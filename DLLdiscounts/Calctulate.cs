@@ -17,7 +17,7 @@ namespace DLLdiscounts
             else if (countBook >= 3)
                 discount = 0.05f;
             if (baseCost / 500 > 1)
-                for (int i = 0; i < baseCost / 500; i++)
+                for (int i = 0; i < baseCost / 500-1; i++)
                     discount += 0.01f;
             return discount;
         }

@@ -25,7 +25,7 @@ namespace BooksShop
         public MainWindow()
         {
             InitializeComponent();
-            frameMain.Navigate(new Shop());
+            frameMain.Navigate(new Shop(false));
             PageLoader.MainFrame = frameMain;
         }
     }
