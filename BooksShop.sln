@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop", "BooksShop\Book
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLdiscounts", "DLLdiscounts\DLLdiscounts.csproj", "{55FA5550-829E-49C0-8E3E-FA187A9142B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{5BD40FE7-274A-4FBC-8F2B-93DA2D6E5780}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{55FA5550-829E-49C0-8E3E-FA187A9142B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55FA5550-829E-49C0-8E3E-FA187A9142B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55FA5550-829E-49C0-8E3E-FA187A9142B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BD40FE7-274A-4FBC-8F2B-93DA2D6E5780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BD40FE7-274A-4FBC-8F2B-93DA2D6E5780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BD40FE7-274A-4FBC-8F2B-93DA2D6E5780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BD40FE7-274A-4FBC-8F2B-93DA2D6E5780}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
