@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище P_Stadnichenko_DemoexamModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="IDbook" />
+          </Key>
+          <Property Name="IDbook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="IDgenre" Type="int" />
+          <Property Name="author" Type="varchar" MaxLength="50" />
+          <Property Name="cost" Type="float" />
+          <Property Name="countInShop" Type="int" />
+          <Property Name="countInStock" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="800" />
+          <Property Name="Image" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="bookToOrder">
+          <Key>
+            <PropertyRef Name="IDbookToOrder" />
+          </Key>
+          <Property Name="IDbookToOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDbook" Type="int" />
+          <Property Name="IDorder" Type="int" />
+          <Property Name="count" Type="int" />
+        </EntityType>
+        <EntityType Name="genres">
+          <Key>
+            <PropertyRef Name="IDgenre" />
+          </Key>
+          <Property Name="IDgenre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="genreName" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="IDorder" />
+          </Key>
+          <Property Name="IDorder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateOrder" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_books_genres">
+          <End Role="genres" Type="Self.genres" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genres">
+              <PropertyRef Name="IDgenre" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="IDgenre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bookToOrder_books">
+          <End Role="books" Type="Self.books" Multiplicity="0..1" />
+          <End Role="bookToOrder" Type="Self.bookToOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="IDbook" />
+            </Principal>
+            <Dependent Role="bookToOrder">
+              <PropertyRef Name="IDbook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bookToOrder_orders">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="bookToOrder" Type="Self.bookToOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="IDorder" />
+            </Principal>
+            <Dependent Role="bookToOrder">
+              <PropertyRef Name="IDorder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище P_Stadnichenko_DemoexamModelContainer">
+          <EntitySet Name="books" EntityType="Self.books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bookToOrder" EntityType="Self.bookToOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="genres" EntityType="Self.genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_books_genres" Association="Self.FK_books_genres">
+            <End Role="genres" EntitySet="genres" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bookToOrder_books" Association="Self.FK_bookToOrder_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="bookToOrder" EntitySet="bookToOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bookToOrder_orders" Association="Self.FK_bookToOrder_orders">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="bookToOrder" EntitySet="bookToOrder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="P_Stadnichenko_DemoexamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="IDbook" />
+          </Key>
+          <Property Name="IDbook" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDgenre" Type="Int32" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cost" Type="Double" />
+          <Property Name="countInShop" Type="Int32" />
+          <Property Name="countInStock" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="genres" Relationship="Self.FK_books_genres" FromRole="books" ToRole="genres" />
+          <NavigationProperty Name="bookToOrder" Relationship="Self.FK_bookToOrder_books" FromRole="books" ToRole="bookToOrder" />
+        </EntityType>
+        <EntityType Name="bookToOrder">
+          <Key>
+            <PropertyRef Name="IDbookToOrder" />
+          </Key>
+          <Property Name="IDbookToOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDbook" Type="Int32" />
+          <Property Name="IDorder" Type="Int32" />
+          <Property Name="count" Type="Int32" />
+          <NavigationProperty Name="books" Relationship="Self.FK_bookToOrder_books" FromRole="bookToOrder" ToRole="books" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_bookToOrder_orders" FromRole="bookToOrder" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="genres">
+          <Key>
+            <PropertyRef Name="IDgenre" />
+          </Key>
+          <Property Name="IDgenre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="genreName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="books" Relationship="Self.FK_books_genres" FromRole="genres" ToRole="books" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="IDorder" />
+          </Key>
+          <Property Name="IDorder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateOrder" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="bookToOrder" Relationship="Self.FK_bookToOrder_orders" FromRole="orders" ToRole="bookToOrder" />
+        </EntityType>
+        <Association Name="FK_books_genres">
+          <End Role="genres" Type="Self.genres" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genres">
+              <PropertyRef Name="IDgenre" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="IDgenre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bookToOrder_books">
+          <End Role="books" Type="Self.books" Multiplicity="0..1" />
+          <End Role="bookToOrder" Type="Self.bookToOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="IDbook" />
+            </Principal>
+            <Dependent Role="bookToOrder">
+              <PropertyRef Name="IDbook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bookToOrder_orders">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="bookToOrder" Type="Self.bookToOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="IDorder" />
+            </Principal>
+            <Dependent Role="bookToOrder">
+              <PropertyRef Name="IDorder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="books" EntityType="Self.books" />
+          <EntitySet Name="bookToOrder" EntityType="Self.bookToOrder" />
+          <EntitySet Name="genres" EntityType="Self.genres" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <AssociationSet Name="FK_books_genres" Association="Self.FK_books_genres">
+            <End Role="genres" EntitySet="genres" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bookToOrder_books" Association="Self.FK_bookToOrder_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="bookToOrder" EntitySet="bookToOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bookToOrder_orders" Association="Self.FK_bookToOrder_orders">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="bookToOrder" EntitySet="bookToOrder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище P_Stadnichenko_DemoexamModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="P_Stadnichenko_DemoexamModel.books">
+              <MappingFragment StoreEntitySet="books">
+                <ScalarProperty Name="IDbook" ColumnName="IDbook" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IDgenre" ColumnName="IDgenre" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="countInShop" ColumnName="countInShop" />
+                <ScalarProperty Name="countInStock" ColumnName="countInStock" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bookToOrder">
+            <EntityTypeMapping TypeName="P_Stadnichenko_DemoexamModel.bookToOrder">
+              <MappingFragment StoreEntitySet="bookToOrder">
+                <ScalarProperty Name="IDbookToOrder" ColumnName="IDbookToOrder" />
+                <ScalarProperty Name="IDbook" ColumnName="IDbook" />
+                <ScalarProperty Name="IDorder" ColumnName="IDorder" />
+                <ScalarProperty Name="count" ColumnName="count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genres">
+            <EntityTypeMapping TypeName="P_Stadnichenko_DemoexamModel.genres">
+              <MappingFragment StoreEntitySet="genres">
+                <ScalarProperty Name="IDgenre" ColumnName="IDgenre" />
+                <ScalarProperty Name="genreName" ColumnName="genreName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="P_Stadnichenko_DemoexamModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="IDorder" ColumnName="IDorder" />
+                <ScalarProperty Name="dateOrder" ColumnName="dateOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
