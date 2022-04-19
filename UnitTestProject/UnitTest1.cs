@@ -15,28 +15,28 @@ namespace UnitTestProject
             Assert.AreEqual(34, result);
         }
         [TestMethod]
-        public void MakeDiscount_BigValues()
+        public void MakeDiscount_BigValues3()
         {
-            int result = Convert.ToInt32(100 * calctulate.MakeDiscount(15, 9999));
-            Assert.AreEqual(34, result);
+            int result = Convert.ToInt32(100 * calctulate.MakeDiscount(8, 1200));
+            Assert.AreEqual(12, result);
         }
         [TestMethod]
-        public void MakeDiscount_BigValues()
+        public void MakeDiscount_BigValues2()
         {
-            int result = Convert.ToInt32(100 * calctulate.MakeDiscount(15, 9999));
-            Assert.AreEqual(34, result);
+            int result = Convert.ToInt32(100 * calctulate.MakeDiscount(9, 1659));
+            Assert.AreEqual(13, result);
         }
         [TestMethod]
-        public void MakeDiscount_BigValues()
+        public void MakeDiscount_BigValues1()
         {
-            int result = Convert.ToInt32(100 * calctulate.MakeDiscount(15, 9999));
-            Assert.AreEqual(34, result);
+            int result = Convert.ToInt32(100 * calctulate.MakeDiscount(15, 2010));
+            Assert.AreEqual(19, result);
         }
         [TestMethod]
-        public void MakeDiscount_CountBiggerThan()
+        public void MakeDiscount_CountBiggerThan9()
         {
-            int result = Convert.ToInt32(100 * calctulate.MakeDiscount(15, 9999));
-            Assert.AreEqual(34, result);
+            int result = Convert.ToInt32(100 * calctulate.MakeDiscount(10, 502));
+            Assert.AreEqual(16, result);
         }
         [TestMethod]
         public void MakeDiscount_CountBiggerThan4()
